@@ -1,6 +1,7 @@
 # Guiding the retraining of convolutional neural networks against adversarial inputs: best guidance metrics and configurations
 
 [![DOI](https://zenodo.org/badge/442607169.svg)](https://zenodo.org/badge/latestdoi/442607169)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Context: When using DL models, there are many possible vulnerabilities
 and some of the most worrying are the adversarial inputs,
