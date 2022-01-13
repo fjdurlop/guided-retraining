@@ -1,4 +1,13 @@
-## Modules:
+## Data:
+
+<pre/>
+- GTSRB
+  | URL: https://benchmark.ini.rub.de/
+- Intel
+  | URL: https://www.kaggle.com/puneet6060/intel-image-classification
+</pre>
+
+## Modules to download:
 
 <pre/>
 - foolbox
