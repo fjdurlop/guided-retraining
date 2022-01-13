@@ -48,7 +48,8 @@ The repository is structured as follows:
 
 ### GTSRB
 
-- `notebooks/0.0.1-gtsrb-original_model_training.ipynb` - Training of original model. 
+- `notebooks/0.0.1-gtsrb-preprocessing.ipynb` - Preprocessing of original data.
+- `notebooks/0.1.1-gtsrb-original_model_training.ipynb` - Training of original model. 
 - `notebooks/1.0.1-gtsrb-obtaining_adversarials.ipynb` - Step 1. Create adversarial inputs for training and testing.
 - `notebooks/2.0.1-gtsrb-obtaining_metrics.ipynb` - Step 2. Obtain guidance metrics (LSA, DSA and random).
 - `notebooks/2.0.2-gtsrb-obtaining_metrics.ipynb` - Step 2. Obtain guidance metrics (NC).
@@ -58,7 +59,8 @@ The repository is structured as follows:
 
 ### Intel
 
-- `notebooks/0.0.1-intel-original_model_training.ipynb` - Training of original model. 
+- `notebooks/0.0.1-intel-preprocessing.ipynb` - Preprocessing of original data.
+- `notebooks/0.1.1-intel-original_model_training.ipynb` - Training of original model. 
 - `notebooks/1.0.1-intel-obtaining_adversarials.ipynb` - Step 1. Create adversarial inputs for training and testing.
 - `notebooks/2.0.1-intel-obtaining_metrics.ipynb` - Step 2. Obtain guidance metrics (LSA, DSA, NC and random).
 - `notebooks/3-4.0.1-intel-ordering_and_retraining-configuration_1.ipynb` - Step 3 and 4. Order inputs w.r.t. the guidance metrics and retraining according to configuration 1.
