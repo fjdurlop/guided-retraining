@@ -29,6 +29,21 @@ inputs. We also show that dataset size has an important impact on
 the results.
 
 
+## Repository Structure
+
+The repository is structured as follows:
+
+<pre/>
+- models
+  | This folder contains our trained models
+- notebooks
+  | This folder contains the jupyter notebooks
+- reports
+  | Generated PDFs, graphics and figures to be used in reporting
+- requirements.txt: The dependencies of our implementation
+</pre>
+
+
 ## Implementation of guided-retraining
 
 ### GTSRB
@@ -51,16 +66,3 @@ the results.
 - `notebooks/3-4.0.3-intel-ordering_and_retraining-configuration_3.ipynb` - Step 3 and 4. Order inputs w.r.t. the guidance metrics and retraining according to configuration 3.
 
 
-## Repository Structure
-
-The repository is structured as follows:
-
-<pre/>
-- models
-  | This folder contains our trained models
-- notebooks
-  | This folder contains the jupyter notebooks
-- reports
-  | Generated PDFs, graphics and figures to be used in reporting
-- requirements.txt: The dependencies of our implementation
-</pre>
