@@ -48,9 +48,10 @@ The repository is structured as follows:
 
 ## Implementation of guided-retraining
 
-###
+### Datasets
+
 <pre/>
-- GTSRB
+- German Traffic Sign Recognition Benchmark (GTSRB)
   | URL: https://benchmark.ini.rub.de/
 - Intel
   | URL: https://www.kaggle.com/puneet6060/intel-image-classification
