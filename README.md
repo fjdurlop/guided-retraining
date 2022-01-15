@@ -40,6 +40,8 @@ The repository is structured as follows:
   | This folder contains the jupyter notebooks
 - reports
   | Generated PDFs, graphics and figures to be used in reporting
+- utils
+  | Python functions
 - requirements.txt: The dependencies of our implementation
 </pre>
 
