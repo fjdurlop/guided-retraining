@@ -48,6 +48,14 @@ The repository is structured as follows:
 
 ## Implementation of guided-retraining
 
+###
+<pre/>
+- GTSRB
+  | URL: https://benchmark.ini.rub.de/
+- Intel
+  | URL: https://www.kaggle.com/puneet6060/intel-image-classification
+</pre>
+
 ### GTSRB
 
 - `notebooks/0.0.1-gtsrb-preprocessing.ipynb` - Preprocessing of original data.
