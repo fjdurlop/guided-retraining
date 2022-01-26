@@ -34,6 +34,8 @@ the results.
 The repository is structured as follows:
 
 <pre/>
+- data
+  | This folder contains the data after preprocessing, binary files in NumPy (.npy format)
 - models
   | This folder contains our trained models
 - notebooks
