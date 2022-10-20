@@ -1,6 +1,7 @@
 # 
 
-[![DOI](https://zenodo.org/badge/442607169.svg)](https://zenodo.org/badge/latestdoi/442607169)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7227645.svg)](https://doi.org/10.5281/zenodo.7227645)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Background: When using deep learning models, one of the most critical vulnerabilities is their exposure to adversarial inputs, which can cause wrong decisions (e.g., incorrect classification of an image) with minor perturbations. To address this vulnerability, it becomes necessary to retrain the affected model against adversarial inputs, as part of the software testing process. In order to make this process energy efficient, data scientists need support on which are the best guidance metrics for reducing the adversarial inputs to use during testing, as well as optimal dataset configurations. 
