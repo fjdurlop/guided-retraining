@@ -3,30 +3,15 @@
 [![DOI](https://zenodo.org/badge/442607169.svg)](https://zenodo.org/badge/latestdoi/442607169)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Context: When using DL models, there are many possible vulnerabilities
-and some of the most worrying are the adversarial inputs,
-which can cause wrong decisions with minor perturbations.
-Objective: We examined four guidance metrics for retraining
-DL models and three retraining configurations, to improve them
-against adversarials with regard to DL testing properties from the
-point of view of a ml engineer in the context of DL models for
-image classification.
+Background: When using deep learning models, one of the most critical vulnerabilities is their exposure to adversarial inputs, which can cause wrong decisions (e.g., incorrect classification of an image) with minor perturbations. To address this vulnerability, it becomes necessary to retrain the affected model against adversarial inputs, as part of the software testing process. In order to make this process energy efficient, data scientists need support on which are the best guidance metrics for reducing the adversarial inputs to use during testing, as well as optimal dataset configurations. 
 
-Method: We conduced an empirical study in two datasets for
-image classification.We explore: (a) the accuracy of ordering adversarial
-inputs with four different guidance metrics (NC, DSA, LSA
-and random), (b) the accuracy of retraining CNNs with three different
-configurations (from scratch, using weights and the augmented
-dataset, and using weights and only adversarial inputs).
+Aim: We examined six guidance metrics for retraining deep learning models, specifically with convolutional neural network architecture, and three retraining configurations. Our goal is to improve the convolutional neural networks against the attack of adversarial inputs with regard to accuracy, resource utilization and execution time from the point of view of a data scientist in the context of image classification.
 
-Results: We reveal that retraining with adversarial inputs from
-original model weights and by ordering with DSA gives the best
-model w.r.t. accuracy and number of inputs used.
+Method: We conduced an empirical study using four datasets for image classification. We explore: (a) the accuracy, resource utilization and execution time of retraining convolutional neural networks with the guidance of six different guidance metrics (neuron coverage, likelihood-based surprise adequacy, distance-based surprise adequacy, deepgini, softmax entropy and random), (b) the accuracy and resource utilization of retraining convolutional neural networks with three different configurations (from scratch and augmented dataset, using weights and augmented dataset, and using weights and only adversarial inputs).
 
-Conclusions: With the above configuration and metric, DL models
-can improve against adversarial inputs without using many
-inputs. We also show that dataset size has an important impact on
-the results.
+Results: We reveal that retraining with an augmented training set with adversarial inputs, from original model weights, and by ordering with uncertainty metrics gives the best model w.r.t. accuracy, resource utilization and execution time.
+
+Conclusions: Although more studies are necessary, we recommend data scientists to use the above configuration and metrics to deal with the vulnerability to adversarial inputs of deep learning models, as they can improve their models against adversarial inputs without using many inputs. We also show that dataset size has an important impact on the results.
 
 
 ## Repository Structure
