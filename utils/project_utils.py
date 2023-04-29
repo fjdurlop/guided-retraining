@@ -1,9 +1,8 @@
 import numpy as np
-import keras
+#import keras
 from datetime import datetime
 import matplotlib.pyplot as plt
 import tensorflow as tf
-
 ##############################################################################
 # CLASSES
 ##############################################################################

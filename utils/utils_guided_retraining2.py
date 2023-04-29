@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 print(tf.__version__)
-import keras
+import tensorflow.keras as keras
 print("keras")
 print(keras.__version__)
 
@@ -39,6 +39,9 @@ class My_model():
         elif(self.dataset == 'cifar'):
             self.num_classes = 10
             self.sizes = 32,32
+        elif(self.dataset == 'fashion'):
+            self.num_classes = 10
+            self.sizes = 28,28
                 
         # self.num_classes = 43 if self.dataset == 'gtsrb' else 6 # Change if another dataset is added
         self.model = self.get_model()
@@ -88,7 +91,6 @@ class My_model():
                                         
                                         keras.layers.Dropout(0.5), 
                                         keras.layers.Dense(self.num_classes, activation = 'softmax')])
-
         elif(self.dataset == "intel"):
             return keras.models.Sequential([  
                                 keras.layers.Conv2D(32, kernel_size= (3, 3), padding= 'same', 
@@ -118,36 +120,6 @@ class My_model():
                                  keras.layers.Dense(100, activation= 'relu'),
  
                                  keras.layers.Dense(self.num_classes, activation = 'softmax')])
-            """
-            return keras.models.Sequential([  
-                                keras.layers.Conv2D(32, kernel_size= (3, 3), padding= 'same', 
-                                                     activation= 'relu'), 
-                                 keras.layers.MaxPooling2D(pool_size= (2, 2)), 
-                               
-                                keras.layers.Conv2D(64, kernel_size= (3, 3), 
-                                                     padding= 'same', activation= 'relu'), 
-
-                                 keras.layers.MaxPooling2D(pool_size= (2, 2)), 
-  
-                                 keras.layers.Conv2D(128, kernel_size= (3, 3), 
-                                                     padding= 'same', activation= 'relu'),
-                                keras.layers.MaxPooling2D(pool_size= (2, 2)),
-                                keras.layers.Dropout(0.3),
-                                 keras.layers.Conv2D(128, kernel_size= (3, 3), padding= 'same', 
-                                                     activation= 'relu'), 
-                                 keras.layers.MaxPooling2D(pool_size= (2, 2)),
-                                 keras.layers.Dropout(0.3),
-
-                                 keras.layers.Flatten(),
-                                keras.layers.Dropout(0.5), 
-                                
-                                 keras.layers.Dense(512, activation= 'relu'), 
-                                keras.layers.Dropout(0.5), 
-                                
-                                 keras.layers.Dense(100, activation= 'relu'),
- 
-                                 keras.layers.Dense(self.num_classes, activation = 'softmax')])
-            """
         elif(self.dataset == "mnist"):
             return keras.models.Sequential([
                                 keras.layers.Conv2D(32, kernel_size= (3, 3), 
@@ -190,7 +162,24 @@ class My_model():
                                  keras.layers.Dense(64, activation= 'relu'),
  
                                  keras.layers.Dense(10, activation = 'softmax')])
+        elif(self.dataset == "fashion"):
+            return keras.models.Sequential([
+                                 keras.layers.Conv2D(64, kernel_size= (3, 3), 
+                                                     padding= 'same', activation= 'relu'),
+                                 keras.layers.MaxPooling2D(pool_size= (2, 2)),
+                                 keras.layers.Conv2D(64, kernel_size= (3, 3), padding= 'same', 
+                                                     activation= 'relu'), 
+                                 keras.layers.MaxPooling2D(pool_size= (2, 2)),
+                                   
+                                 keras.layers.Dropout(0.25), 
 
+                                 keras.layers.Flatten(), 
+                                 keras.layers.Dense(128, activation= 'relu'), 
+                                 keras.layers.Dropout(0.5), 
+                                 keras.layers.Dense(64,activation='relu'),
+                                 keras.layers.Dropout(0.5),
+                                 keras.layers.Dense(10, activation = 'softmax')
+            ])
 
     def compile_model(self):
         try:
@@ -258,6 +247,7 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
     Returns:
         x_set,y_set (Numpy arrays)
     """
+    data_dir = "D:/guided-retraining/data/"
     if (dataset =="gtsrb"):
         if(set_type == "Train"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/x_train.npy"
@@ -266,6 +256,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data/y_train.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_train.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_train.npy"
+            x_dir = data_dir + dataset + "/x_train.npy"
+            y_dir = data_dir + dataset + "/y_train.npy"
 
 
         elif (set_type == "Test"):
@@ -275,6 +267,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data/y_test.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_test.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_test.npy"
+            x_dir = data_dir + dataset + "/x_test.npy"
+            y_dir = data_dir + dataset + "/y_test.npy"
 
 
         elif (set_type == "Val"):
@@ -284,6 +278,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data/y_val.npy"   
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_val.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_val.npy"
+            x_dir = data_dir + dataset + "/x_val.npy"
+            y_dir = data_dir + dataset + "/y_val.npy"
 
 
         elif (set_type == "Train_and_adversary"):
@@ -398,15 +394,43 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/train_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/train_and_adversary_labels.npy"
 
+    elif (dataset =="fashion"):
+        if(set_type == "Train"):
+            x_dir = data_dir + dataset + "/x_train.npy"
+            y_dir = data_dir + dataset + "/y_train.npy"
+
+        elif (set_type == "Test"):
+            x_dir = data_dir + dataset + "/x_test.npy"
+            y_dir = data_dir + dataset + "/y_test.npy"
+
+
+        elif (set_type == "Val"):
+            x_dir = data_dir + dataset + "/x_val.npy"
+            y_dir = data_dir + dataset + "/y_val.npy"
+
+
+        elif (set_type == "Train_and_adversary"):
+            # Train set + adversarial examples obtained from train set
+            x_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary.npy"
+            y_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
+            x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary.npy"
+            y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
         else:
-            print("There is not data in your directions, see the function definition") 
-    x_set = np.load(x_dir)
-    y_set = np.load(y_dir)
-    if(verbose):
-        print(x_dir)
-        print('x_set len: ',len(x_set))
-        print(y_dir)
-        print('y_set len: ',len(y_set))
+            print("This set does not exist")
+    
+    try:
+        x_set = np.load(x_dir)
+        y_set = np.load(y_dir)
+        
+        if(verbose):
+            print(x_dir)
+            print('x_set len: ',len(x_set))
+            print(y_dir)
+            print('y_set len: ',len(y_set))
+    except:
+        print(f"There is not .npy file in {x_dir} and {y_dir}")
+        
+    
         
     
     
@@ -424,6 +448,7 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
     Returns:
         x_set,y_set (Numpy arrays)
     """
+    adversarial_dir = "D:/guided-retraining/data_adversarial_july/"
     if dataset =="gtsrb":
         if(set_type == "Test_adversarial"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/test_and_images_fgsm.npy"
@@ -468,15 +493,21 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
             y_dir = "D:/data_adversarial_july/cifar/test_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/test_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/test_and_adversary_labels.npy"
-        
+    elif dataset =="fashion":
+        if(set_type == "Test_adversarial"):
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adverdsary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adverdsary_labels.npy"
     
-    x_set = np.load(x_dir)
-    y_set = np.load(y_dir)
-    if(verbose):
-        print(x_dir)
-        print('x_set len: ',len(x_set))
-        print(y_dir)
-        print('y_set len: ',len(y_set))
+    try:
+        x_set = np.load(x_dir)
+        y_set = np.load(y_dir)
+        if(verbose):
+            print(x_dir)
+            print('x_set len: ',len(x_set))
+            print(y_dir)
+            print('y_set len: ',len(y_set))
+    except:
+        print(f"Problems with loading your .npy files in {x_dir} and {y_dir}")
 
     return x_set,y_set
 
@@ -659,16 +690,18 @@ def fit_model(model,x_train,y_train,x_val,y_val,epochs=10):
     return history
 
 
-def see_x_image(x,y):
+def see_x_image(x,y,img_width, img_height):
     ''' Visualize an image with matplotlib
 
     Params:
         x: (Numpy ndarray (48,48,1))
         y: (Numpy ndarray (43,))
+        img_width:
+        img_height:
     
     '''
     plt.figure()
     
-    plt.imshow((x.reshape((48,48))*255).astype("uint8"))
+    plt.imshow((x.reshape((img_width,img_height))*255).astype("uint8"))
     plt.title(str(np.argmax(y)))
     plt.axis("off")

@@ -1,10 +1,14 @@
 import numpy as np
-import keras
+
 from datetime import datetime
 import matplotlib.pyplot as plt
 from numpy.core.arrayprint import DatetimeFormat
 import tensorflow as tf
+import tensorflow.keras as keras
 from tensorflow.python.eager.context import num_gpus
+
+
+debug = True
 
 ##############################################################################
 # CLASSES
@@ -39,7 +43,7 @@ class My_model():
 
     def get_model(self):
         if(self.dataset =="gtsrb" ):
-            return keras.models.Sequential([
+            return tf.keras.Sequential([
                                         keras.layers.Conv2D(32, kernel_size= (3, 3), 
                                                             padding= 'same', activation= 'relu'), 
                                         keras.layers.Conv2D(32, kernel_size= (3, 3), padding= 'same', 
@@ -195,24 +199,26 @@ def get_data(dataset = "gtsrb",set_type = "Train"):
     Returns:
         x_set,y_set (Numpy arrays)
     """
+    data_dir = "D:/guided-retraining/data/"
     if (dataset =="gtsrb"):
         if(set_type == "Train"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/x_train.npy"
             #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/y_train.npy"
-            x_dir = "D:/data/x_train.npy"
-            y_dir = "D:/data/y_train.npy"
+            x_dir = data_dir + dataset + "/x_train.npy"
+            y_dir = data_dir + dataset + "/y_train.npy"
 
         elif (set_type == "Test"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/x_test.npy"
             #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/y_test.npy"
-            x_dir = "D:/data/x_test.npy"
-            y_dir = "D:/data/y_test.npy"
+            print("x_test")
+            x_dir = data_dir + dataset + "/x_test.npy"
+            y_dir = data_dir + dataset + "/y_test.npy"
 
         elif (set_type == "Val"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/x_val.npy"
             #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/y_val.npy"
-            x_dir = "D:/data/x_val.npy"
-            y_dir = "D:/data/y_val.npy"   
+            x_dir = data_dir + dataset + "/x_val.npy"
+            y_dir = data_dir + dataset + "/y_val.npy"   
 
         elif (set_type == "Train_and_adversary"):
             # Train set + adversarial examples obtained from train set
@@ -247,6 +253,9 @@ def get_data(dataset = "gtsrb",set_type = "Train"):
         else:
             print("There is not data in your directions, see the function definition") 
 
+    if debug:
+        print(x_dir)
+        print(y_dir)
     x_set = np.load(x_dir)
     y_set = np.load(y_dir)
 
@@ -303,7 +312,7 @@ def get_model(dataset = "gtsrb"):
             Keras sequential model (keras.models.Sequential)
     """
     if dataset == "gtsrb":
-        return keras.models.Sequential([
+        return keras.Sequential([
                                         keras.layers.Conv2D(32, kernel_size= (3, 3), 
                                                             padding= 'same', activation= 'relu'), 
                                         keras.layers.Conv2D(32, kernel_size= (3, 3), padding= 'same', 
