@@ -47,6 +47,8 @@ The repository is structured as follows:
   | URL: http://www.cs.toronto.edu/~kriz/cifar.html
 - MNIST
   | URL: http://yann.lecun.com/exdb/mnist/
+- Fashion-MNIST
+  | URL: https://github.com/zalandoresearch/fashion-mnist
 
 </pre>
 
@@ -103,3 +105,17 @@ The repository is structured as follows:
 - `notebooks/5.1.1-mnist-plot-c1.ipynb` - Plotting of configuration 1. 
 - `notebooks/5.1.2-mnist-plot-c2.ipynb` - Plotting of configuration 2. 
 - `notebooks/5.1.3-mnist-plot-c3.ipynb` - Plotting of configuration 3. 
+
+
+### Fashion-MNIST
+
+- `notebooks/0.1.1-fashion-original_model_training.ipynb` - Training of original model. 
+- `notebooks/1.1.1-fashion-obtaining_adversarials.ipynb` - Step 1. Create adversarial inputs for training and testing.
+- `notebooks/2.1.1-fashion-obtaining_metrics.ipynb` - Step 2. Obtain guidance metrics (LSA, DSA and random).
+- `notebooks/2.1.2-fashion-obtaining_metrics.ipynb` - Step 2. Obtain guidance metrics (NC).
+- `notebooks/3-4.1.1-fashion-ordering_and_retraining-configuration_1.ipynb` - Step 3 and 4. Order inputs w.r.t. the guidance metrics and retraining according to configuration 1.
+- `notebooks/3-4.1.2-fashion-ordering_and_retraining-configuration_2.ipynb` - Step 3 and 4. Order inputs w.r.t. the guidance metrics and retraining according to configuration 2.
+- `notebooks/3-4.1.3-fashion-ordering_and_retraining-configuration_3.ipynb` - Step 3 and 4. Order inputs w.r.t. the guidance metrics and retraining according to configuration 3.
+- `notebooks/5.1.1-fashion-plot-c1.ipynb` - Plotting of configuration 1. 
+- `notebooks/5.1.2-fashion-plot-c2.ipynb` - Plotting of configuration 2. 
+- `notebooks/5.1.3-fashion-plot-c3.ipynb` - Plotting of configuration 3. 
