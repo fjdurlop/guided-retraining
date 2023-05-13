@@ -14,6 +14,7 @@ from tensorflow.python.eager.context import num_gpus
 # CLASSES
 ##############################################################################
 
+verbose = True
 class My_model():
     """Sequential model predefined, CNN arquitecture
     """
@@ -48,6 +49,8 @@ class My_model():
         
         if(loaded_model):
             try:
+                if (verbose):
+                    print(saved_model_dir) 
                 self.model = keras.models.load_model(saved_model_dir)
                 print("Model loaded correctly")
             except:
@@ -284,24 +287,22 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
 
         elif (set_type == "Train_and_adversary"):
             # Train set + adversarial examples obtained from train set
-            #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/train_and_images_fgsm_5000.npy"
-            #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/train_and_labels_fgsm_5000.npy"    
-            #x_dir = "D:/data/jan_data/train_and_images_fgsm_5000.npy"
-            #y_dir = "D:/data/jan_data/train_and_labels_fgsm_5000.npy"
-            x_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary.npy"
-            y_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
-            x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary.npy"
-            y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
+            #x_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary.npy"
+            #y_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
+            #x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary.npy"
+            #y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
+            x_dir = data_dir + "data_adversarial_july/gtsrb/train_and_adversary.npy"
+            y_dir = data_dir + "data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
         else:
             print("There is not data in your directions, see the function definition") 
     elif (dataset =="intel"):
         if(set_type == "Train"):
-            #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/intel_dataset/x_train_intel_2.npy"
-            #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/intel_dataset/y_train_intel_2.npy"
-            x_dir = "D:/data/intel_dataset/x_train_intel_2.npy"
-            y_dir = "D:/data/intel_dataset/y_train_intel_2.npy"
-            x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_train_intel_2.npy"
-            y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_train_intel_2.npy"
+            #x_dir = "D:/data/intel_dataset/x_train_intel_2.npy"
+            #y_dir = "D:/data/intel_dataset/y_train_intel_2.npy"
+            #x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_train_intel_2.npy"
+            #y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_train_intel_2.npy"
+            x_dir = data_dir + dataset + "/x_train.npy"
+            y_dir = data_dir + dataset + "/y_train.npy"
 
 
         elif (set_type == "Test"):
@@ -311,6 +312,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data/intel_dataset/y_test_intel_2.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_test_intel_2.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_test_intel_2.npy"
+            x_dir = data_dir + dataset + "/x_test_intel_2.npy"
+            y_dir = data_dir + dataset + "/y_test_intel_2.npy"
 
         elif (set_type == "Val"):
             #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/data/intel_dataset/x_val_intel_2.npy"
@@ -318,7 +321,9 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             x_dir = "D:/data/intel_dataset/x_val_intel_2.npy"
             y_dir = "D:/data/intel_dataset/y_val_intel_2.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_val_intel_2.npy"
-            y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_val_intel_2.npy"  
+            y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_val_intel_2.npy" 
+            x_dir = data_dir + dataset + "/x_val.npy"
+            y_dir = data_dir + dataset + "/y_val.npy" 
 
 
         elif (set_type == "Train_and_adversary"):
@@ -331,6 +336,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data_adversarial_july/intel/train_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/intel/train_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/intel/train_and_adversary_labels.npy"
+            x_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary.npy"
+            y_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary_labels.npy"
 
         else:
             print("There is not data in your directions, see the function definition") 
@@ -348,6 +355,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data_mnist/y_test.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_test.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_test.npy" 
+            x_dir = data_dir + dataset + "/x_test.npy"
+            y_dir = data_dir + dataset + "/y_test.npy"
             
         elif (set_type == "Val"):
             x_dir = "D:/data_mnist/x_val.npy"
@@ -360,6 +369,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data_adversarial_july/mnist/train_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/mnist/train_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/mnist/train_and_adversary_labels.npy"
+            x_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary.npy"
+            y_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary_labels.npy"
 
         else:
             print("There is not data in your directions, see the function definition") 
@@ -377,6 +388,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data/cifar/y_test.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/x_test.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/train_data/"+dataset+"/y_test.npy" 
+            x_dir = data_dir + dataset + "/x_test.npy"
+            y_dir = data_dir + dataset + "/y_test.npy"
 
             
         elif (set_type == "Val"):
@@ -393,6 +406,8 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
             y_dir = "D:/data_adversarial_july/cifar/train_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/train_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/train_and_adversary_labels.npy"
+            x_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary.npy"
+            y_dir = data_dir + f"data_adversarial_july/{dataset}/train_and_adversary_labels.npy"
 
     elif (dataset =="fashion"):
         if(set_type == "Train"):
@@ -411,10 +426,9 @@ def get_data(dataset = "gtsrb",set_type = "Train",verbose = False):
 
         elif (set_type == "Train_and_adversary"):
             # Train set + adversarial examples obtained from train set
-            x_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary.npy"
-            y_dir = "D:/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
-            x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary.npy"
-            y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/train_and_adversary_labels.npy"
+            x_dir = data_dir + "data_adversarial_july/fashion/train_and_adversary.npy"
+            y_dir = data_dir + "data_adversarial_july/fashion/train_and_adversary_labels.npy"
+
         else:
             print("This set does not exist")
     
@@ -448,17 +462,16 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
     Returns:
         x_set,y_set (Numpy arrays)
     """
-    adversarial_dir = "D:/guided-retraining/data_adversarial_july/"
+    adversarial_dir = "D:/guided-retraining/data/data_adversarial_july/"
     if dataset =="gtsrb":
         if(set_type == "Test_adversarial"):
-            #x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/test_and_images_fgsm.npy"
-            #y_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/test_and_labels_fgsm.npy"
-            #x_dir = "D:/data/jan_data/test_and_images_fgsm.npy"
-            #y_dir = "D:/data/jan_data/test_and_labels_fgsm.npy"
-            x_dir = "D:/data_adversarial_july/gtsrb/test_and_adversary.npy"
-            y_dir = "D:/data_adversarial_july/gtsrb/test_and_adversary_labels.npy"
-            x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/test_and_adversary.npy"
-            y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/test_and_adversary_labels.npy"
+            #x_dir = "D:/data_adversarial_july/gtsrb/test_and_adversary.npy"
+            #y_dir = "D:/data_adversarial_july/gtsrb/test_and_adversary_labels.npy"
+            #x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/test_and_adversary.npy"
+            #y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/gtsrb/test_and_adversary_labels.npy"
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adversary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adversary_labels.npy"
+            print(x_dir,y_dir)
             
         #elif (set_type == "Test_jsma"):
         #    x_dir = "C:/Users/fjdur/Desktop/upc/project_notebooks/github_project/DL_notebooks/adv_examples/test_and_images_jsma.npy"
@@ -475,6 +488,9 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
             y_dir = "D:/data_adversarial_july/intel/test_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/intel/test_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/intel/test_and_adversary_labels.npy"
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adversary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adversary_labels.npy"
+            print(x_dir,y_dir)
     elif dataset =="mnist":
         
         if(set_type == "Test_adversarial"):
@@ -484,6 +500,9 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
             y_dir = "D:/data_adversarial_july/mnist/test_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/mnist/test_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/mnist/test_and_adversary_labels.npy"
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adversary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adversary_labels.npy"
+            print(x_dir,y_dir)
     elif dataset =="cifar":
         
         if(set_type == "Test_adversarial"):
@@ -493,10 +512,14 @@ def get_adversarial_data(dataset = "gtsrb",set_type = "Test_fgsm",verbose=False)
             y_dir = "D:/data_adversarial_july/cifar/test_and_adversary_labels.npy"
             x_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/test_and_adversary.npy"
             y_dir = "C:/Users/fjdurlop/Documents/upc/data_adversarial_july/cifar/test_and_adversary_labels.npy"
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adversary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adversary_labels.npy"
+            print(x_dir,y_dir)
     elif dataset =="fashion":
         if(set_type == "Test_adversarial"):
-            x_dir = f"{adversarial_dir}{dataset}/test_and_adverdsary.npy"
-            y_dir = f"{adversarial_dir}{dataset}/test_and_adverdsary_labels.npy"
+            x_dir = f"{adversarial_dir}{dataset}/test_and_adversary.npy"
+            y_dir = f"{adversarial_dir}{dataset}/test_and_adversary_labels.npy"
+            print(x_dir,y_dir)
     
     try:
         x_set = np.load(x_dir)
